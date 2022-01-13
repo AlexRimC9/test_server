@@ -6,6 +6,8 @@ import com.project.repository.UserRepository;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicHeader;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
+
 import java.util.*;
 import java.util.Random;
 
@@ -31,7 +33,6 @@ public class LoginService {
     public String getToken(String login) {
         User user = userRepository.findLogin(login);
         String token = getRandomString(62);
-        userRepository.
         userRepository.getTokenList().put(user.getLogin(), token);
 
 

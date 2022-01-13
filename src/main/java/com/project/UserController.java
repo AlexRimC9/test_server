@@ -21,16 +21,16 @@ public class UserController {
     }
 
     @GetMapping("/users/all")
-    public List<User> getAllUsers() {
-       if (ValidateToken(userRepository.getToken())) {
+    public List<User> getAllUsers(@RequestParam String token) {
+       if (ValidateToken(token)) {
             return userRepository.getAllUsers();
         }
         return null;
     }
 
     @PostMapping("/users/add")
-    public User addUser(@RequestBody User user) {
-        if (ValidateToken(user.getToken())) {
+    public User addUser(@RequestBody User user,@RequestParam String token) {
+        if (ValidateToken(token)) {
             userRepository.add(user);
             return user;
         }
@@ -38,9 +38,10 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}/delete")
-    public void deleteUser(@PathVariable Long id) {
-        if (ValidateToken(user.getToken())) {
+    public void deleteUser(@PathVariable Long id ,@RequestParam String token) {
+        if (ValidateToken(token)) {
             userRepository.delete(id);
+
         }
 
     }
